@@ -1,6 +1,6 @@
 <?php
 
-namespace Suggestions;
+namespace Names;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

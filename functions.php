@@ -1,10 +1,8 @@
 <?php
 
-namespace Suggestions;
+namespace Names;
 
-require_once __DIR__ . '/vendor/autoload.php';
-
-use Suggestions\SuggestClient;
+use Names\SuggestClient;
 
 const DEFAULT_FORMAT = 'SNP';
 

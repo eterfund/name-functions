@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Suggestions\SuggestClient;
-use function Suggestions\validateName;
+use Names\SuggestClient;
+use function Names\validateName;
 
 $client = new SuggestClient(
     new GuzzleHttp\Client(), 
