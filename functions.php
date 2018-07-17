@@ -6,6 +6,20 @@ use Names\SuggestClient;
 
 const DEFAULT_FORMAT = 'SNP';
 
+function checkSplit ($fullname, $parts) {
+    $words = explode(' ', $fullname);
+    $counter = 0;
+    foreach (['name', 'surname', 'patronymic'] as $part) {
+        if ($parts->$part) {
+            if (array_search($parts->$part, $words) === false) {
+                return false;
+            }
+            $counter++;
+        }
+    }
+    return count($words) === $counter;
+}
+
 /**
  * format:
  * S = surname, N = name, P = patronymic
