@@ -1,0 +1,10 @@
+{
+  "name": "youngreaders/name-functions",
+  "description": "Set of functions to recognize/transform names in Russian",
+  "autoload": {
+    "files": ["functions.php", "SuggestClient.php"]
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  }
+}
