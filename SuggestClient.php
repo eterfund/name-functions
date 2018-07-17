@@ -2,8 +2,6 @@
 
 namespace Names;
 
-require_once __DIR__ . '/vendor/autoload.php';
-
 class SuggestClient {
     private $client;
     private $token;
