@@ -1,15 +1,67 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+use PHPUnit\Framework\TestCase;
+use function Names\{checkSplit, joinName};
 
-use Names\SuggestClient;
-use function Names\validateName;
+final class FunctionsTest extends TestCase
+{
+    public function testCheckSplitValid ()
+    {
+        $this->assertEquals(
+            true,
+            checkSplit('Сидоров Иван Петрович', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => 'Петрович'
+            ])
+        );
+    }
 
-$client = new SuggestClient(
-    new GuzzleHttp\Client(), 
-    '<your_token_here>'
-);
+    public function testCheckSplitWordChanged ()
+    {
+        $this->assertEquals(
+            false,
+            checkSplit('Сидоров Иван Петрович', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => 'Петрович123'
+            ])
+        );
+    }
 
-if (validateName($client, 'Никулин Дмитрий Владимирович')) {
-    echo "Name is valid.\n";
+    public function testCheckSplitWordRemoved ()
+    {
+        $this->assertEquals(
+            false,
+            checkSplit('Сидоров Иван Петрович', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров'
+            ])
+        );
+    }
+
+    public function testCheckSplitWordAdded ()
+    {
+        $this->assertEquals(
+            false,
+            checkSplit('Сидоров Иван', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => 'Петрович'
+            ])
+        );
+    }
+
+    public function testJoinName ()
+    {
+        $this->assertEquals(
+            'Сидоров Иван Петрович',
+            joinName((object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => 'Петрович'
+            ])
+        );
+    }
 }
+
