@@ -7,7 +7,7 @@ use Names\SuggestClient;
 const DEFAULT_FORMAT = 'SNP';
 
 function checkSplit ($fullname, $parts) {
-    $words = explode(' ', $fullname);
+    $words = array_filter(explode(' ', $fullname), 'strlen');
     $counter = 0;
     foreach (['name', 'surname', 'patronymic'] as $part) {
         if (property_exists($parts, $part)) {

@@ -17,6 +17,18 @@ final class FunctionsTest extends TestCase
         );
     }
 
+    public function testCheckSplitExtraSpaces ()
+    {
+        $this->assertEquals(
+            true,
+            checkSplit('Сидоров  Иван    Петрович', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => 'Петрович'
+            ])
+        );
+    }
+
     public function testCheckSplitWordChanged ()
     {
         $this->assertEquals(
