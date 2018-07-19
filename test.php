@@ -29,6 +29,29 @@ final class FunctionsTest extends TestCase
         );
     }
 
+    public function testCheckSplitTwoWords ()
+    {
+        $this->assertEquals(
+            true,
+            checkSplit('Сидоров Иван', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров'
+            ])
+        );
+    }
+
+    public function testCheckSplitEmpty ()
+    {
+        $this->assertEquals(
+            true,
+            checkSplit('Сидоров Иван', (object)[
+                'name' => 'Иван',
+                'surname' => 'Сидоров',
+                'patronymic' => null
+            ])
+        );
+    }
+
     public function testCheckSplitWordChanged ()
     {
         $this->assertEquals(

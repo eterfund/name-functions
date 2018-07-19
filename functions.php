@@ -10,7 +10,7 @@ function checkSplit ($fullname, $parts) {
     $words = array_filter(explode(' ', $fullname), 'strlen');
     $counter = 0;
     foreach (['name', 'surname', 'patronymic'] as $part) {
-        if (property_exists($parts, $part)) {
+        if (property_exists($parts, $part) && strlen($parts->$part)) {
             if (array_search($parts->$part, $words) === false) {
                 return false;
             }
